@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import serenLogo from '../assets/seren_2.png';
+import serenLogo from '../../assets/seren-logo.png';
 
 const links = [
   { label: 'Home', href: '#home' },
