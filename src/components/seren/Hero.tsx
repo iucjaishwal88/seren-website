@@ -76,7 +76,7 @@ export default function Hero() {
         >
           {/* Hero image — fixed: use object-contain so the full image is always visible and never cropped */}
           <div
-            className="relative rounded-3xl overflow-hidden shadow-2xl h-[500px] md:h-[700px] lg:h-[800px] max-w-sm mx-auto md:max-w-none flex items-center justify-center"
+            className="relative rounded-3xl overflow-hidden shadow-2xl w-full h-[500px] md:h-[90vh] md:min-h-[700px] flex items-center justify-center"
             style={{ background: '#FAF8F3' }}
           >
             <img
@@ -86,7 +86,6 @@ export default function Hero() {
               loading="eager"
             />
           </div>
-
           <div className="absolute -bottom-4 -left-4 md:-left-8 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-[#E8E2D4] animate-float">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[#F5F0E8] flex items-center justify-center">
