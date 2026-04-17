@@ -1,16 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from '@/components/seren/Navbar';
+import Hero from '@/components/seren/Hero';
+import EmotionalSection from '@/components/seren/EmotionalSection';
+import About from '@/components/seren/About';
+import Products from '@/components/seren/Products';
+import Gallery from '@/components/seren/Gallery';
+import CustomizeForm from '@/components/seren/CustomizeForm';
+import WhySeren from '@/components/seren/WhySeren';
+import TrustSection from '@/components/seren/TrustSection';
+import Testimonials from '@/components/seren/Testimonials';
+import Footer from '@/components/seren/Footer';
+import MobileCta from '@/components/seren/MobileCta';
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen" style={{ background: '#FAF8F3' }}>
+      <Navbar />
+      <main>
+        <Hero />
+        <EmotionalSection />
+        <About />
+        <Products />
+        <Gallery />
+        <CustomizeForm />
+        <WhySeren />
+        <TrustSection />
+        <Testimonials />
+      </main>
+      <Footer />
+      <MobileCta />
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
