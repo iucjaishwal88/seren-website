@@ -1,42 +1,50 @@
 import { useInView } from '../../hooks/useInView';
-import { Star, ArrowRight } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
+
+const WHATSAPP_NUMBER = '919999999999'; // update to real number
 
 const products = [
   {
     id: 1,
-    name: 'Scented Candles',
-    tagline: 'Perfect for late-night calm',
-    description: 'Hand-poured with intention. Custom scents available — from warm vanilla to fresh linen, earthy oud to floral rose.',
-    price: '₹199 – ₹799',
-    image: 'https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&dpr=1',
-    badge: 'Best Seller',
-    isFeatured: true,
-    cta: 'Order Now',
-    href: '#customize',
+    name: 'Seren Floral Glow — Heavenly Home',
+    price: 700,
+    description: '"Each piece is lovingly handcrafted to feel as unique and comforting as home itself" — Perfect for gifting & home decor',
+    image: 'https://i.ibb.co/ZpR1cLPt/product1-jpeg.jpg',
   },
   {
     id: 2,
-    name: 'Gift Hampers',
-    tagline: 'Gifts that feel personal',
-    description: 'Curated & aesthetic gift sets, fully customizable. A thoughtful way to say you care — without the generic.',
-    price: '₹599 – ₹2499',
-    image: 'https://images.pexels.com/photos/5632401/pexels-photo-5632401.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&dpr=1',
-    badge: null,
-    isFeatured: false,
-    cta: 'Order Now',
-    href: '#customize',
+    name: 'Midnight Focus — Vanilla Coffee Candle',
+    price: 450,
+    description: '"Hand-poured with care to turn your study time into a calm, focused ritual" — Student Collection | 200ml | Wooden Lid',
+    image: 'https://i.ibb.co/gFFvpqcn/product2-jpeg.jpg',
   },
   {
     id: 3,
-    name: 'Custom Orders',
-    tagline: 'Made just for you',
-    description: 'Choose your scent, packaging, message & more. Fully personalized from start to finish — because you deserve it.',
-    price: 'Starting ₹299',
-    image: 'https://images.pexels.com/photos/4099354/pexels-photo-4099354.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&dpr=1',
-    badge: 'Popular',
-    isFeatured: false,
-    cta: 'Customize Now',
-    href: '#customize',
+    name: 'Blush Teddy — Seren',
+    price: 70,
+    description: '"Handcrafted teddy candle that wraps your space in warmth. A little piece of love."',
+    image: 'https://i.ibb.co/HfxVV8bT/product3-jpeg.jpg',
+  },
+  {
+    id: 4,
+    name: 'Heart Message Candle',
+    price: 599,
+    description: '"A handcrafted heart candle designed to hold your message and make every moment unforgettable."',
+    image: 'https://i.ibb.co/yc8ChCcj/product4-pjeg.jpg',
+  },
+  {
+    id: 5,
+    name: 'Moment by Seren',
+    price: 650,
+    description: '"A thoughtful, curated gift hamper filled with sweet surprises made to brighten someone\'s day instantly."',
+    image: 'https://i.ibb.co/7dsK4qmt/product5-pjeg.jpg',
+  },
+  {
+    id: 6,
+    name: 'Create Your Surprise Box',
+    price: 699,
+    description: '"Design your own gift hamper, curated with love to match your vibe and make every moment special."',
+    image: 'https://i.ibb.co/BKt24rbr/product6-jpeg.jpg',
   },
 ];
 
@@ -58,9 +66,9 @@ export default function Products() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {products.map((product, i) => (
-            <ProductCard key={product.id} product={product} delay={i} />
+            <ProductCard key={product.id} product={product} delay={i % 4} />
           ))}
         </div>
       </div>
@@ -70,31 +78,17 @@ export default function Products() {
 
 function ProductCard({ product, delay }: { product: typeof products[0]; delay: number }) {
   const { ref, isInView } = useInView(0.1);
+  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    `Hi Seren! I'd like to order: ${product.name} (₹${product.price}).`
+  )}`;
 
   return (
     <div
       ref={ref}
       className={`section-fade section-fade-delay-${delay + 1} ${isInView ? 'visible' : ''}`}
     >
-      <div
-        className={`relative rounded-3xl overflow-hidden bg-[#FAF8F3] shadow-sm border transition-all duration-400 hover:shadow-xl hover:-translate-y-1 group ${
-          product.isFeatured
-            ? 'border-sage/40 ring-1 ring-sage/20'
-            : 'border-[#E0D8C8]'
-        }`}
-      >
-        {product.badge && (
-          <div className={`absolute top-4 right-4 z-10 flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-sans font-medium tracking-wide ${
-            product.isFeatured
-              ? 'bg-sage text-warm-white'
-              : 'bg-warm-dark text-warm-white'
-          }`}>
-            {product.isFeatured && <Star size={10} fill="currentColor" />}
-            {product.badge}
-          </div>
-        )}
-
-        <div className="relative overflow-hidden aspect-square">
+      <div className="relative rounded-3xl overflow-hidden bg-[#FAF8F3] shadow-sm border border-[#E0D8C8] transition-all duration-400 hover:shadow-xl hover:-translate-y-1 group flex flex-col h-full">
+        <div className="relative overflow-hidden aspect-square bg-[#FAF8F3]">
           <img
             src={product.image}
             alt={product.name}
@@ -104,25 +98,19 @@ function ProductCard({ product, delay }: { product: typeof products[0]; delay: n
           <div className="absolute inset-0 bg-gradient-to-t from-[#2A2820]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
 
-        <div className="p-6">
-          <p className="font-sans text-xs text-sage tracking-wider uppercase mb-2">{product.tagline}</p>
-          <h3 className="font-serif text-2xl text-warm-mid mb-3">{product.name}</h3>
-          <p className="font-sans text-sm text-warm-mid/60 leading-relaxed mb-5">{product.description}</p>
-
-          <div className="flex items-center justify-between">
-            <span className="font-serif text-lg text-warm-mid font-medium">{product.price}</span>
-          </div>
+        <div className="p-6 flex flex-col flex-1">
+          <h3 className="font-serif text-xl md:text-2xl text-warm-mid mb-2 leading-snug">{product.name}</h3>
+          <span className="font-serif text-lg text-sage font-medium mb-3">₹{product.price}</span>
+          <p className="font-sans text-sm text-warm-mid/60 leading-relaxed mb-6 flex-1">{product.description}</p>
 
           <a
-            href={product.href}
-            className={`mt-4 w-full flex items-center justify-center gap-2 py-3 rounded-full font-sans text-sm font-medium tracking-wide transition-all duration-300 group/btn ${
-              product.isFeatured
-                ? 'bg-sage text-warm-white hover:bg-warm-mid hover:shadow-md'
-                : 'border border-[#C4BFA8] text-warm-mid hover:bg-sage hover:text-warm-white hover:border-sage'
-            }`}
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-full font-sans text-sm font-medium tracking-wide bg-[#25D366] text-white hover:bg-[#20ba59] hover:shadow-md transition-all duration-300"
           >
-            {product.cta}
-            <ArrowRight size={14} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+            <MessageCircle size={16} />
+            Order on WhatsApp
           </a>
         </div>
       </div>
