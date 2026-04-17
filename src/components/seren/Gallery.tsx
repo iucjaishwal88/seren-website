@@ -1,4 +1,4 @@
-import { useInView } from '../hooks/useInView';
+import { useInView } from '../../hooks/useInView';
 import { Instagram } from 'lucide-react';
 
 const images = [

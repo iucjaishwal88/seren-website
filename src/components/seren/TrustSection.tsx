@@ -1,4 +1,4 @@
-import { useInView } from '../hooks/useInView';
+import { useInView } from '../../hooks/useInView';
 import { Heart, ShieldCheck, Sparkles } from 'lucide-react';
 
 const pillars = [

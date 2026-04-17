@@ -1,4 +1,4 @@
-import { useInView } from '../hooks/useInView';
+import { useInView } from '../../hooks/useInView';
 
 export default function EmotionalSection() {
   const { ref, isInView } = useInView(0.15);

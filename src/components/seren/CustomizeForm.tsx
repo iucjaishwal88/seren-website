@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useInView } from '../hooks/useInView';
+import { useInView } from '../../hooks/useInView';
 import { MessageCircle, CheckCircle } from 'lucide-react';
 
 const productOptions = [

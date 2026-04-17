@@ -1,4 +1,4 @@
-import { useInView } from '../hooks/useInView';
+import { useInView } from '../../hooks/useInView';
 import { Flame, Leaf, Gift } from 'lucide-react';
 
 const reasons = [
