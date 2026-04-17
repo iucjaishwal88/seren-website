@@ -76,13 +76,13 @@ export default function Hero() {
         >
           {/* Hero image — fixed: use object-contain so the full image is always visible and never cropped */}
           <div
-            className="relative rounded-3xl overflow-hidden shadow-2xl h-[700px] md:h-[800px] max-w-sm mx-auto md:max-w-none flex items-center justify-center"
-            style={{ background: 'linear-gradient(160deg, #F0EBE0 0%, #E8E0CC 100%)' }}
+            className="relative rounded-3xl overflow-hidden shadow-2xl h-[500px] md:h-[700px] lg:h-[800px] max-w-sm mx-auto md:max-w-none flex items-center justify-center"
+            style={{ background: '#FAF8F3' }}
           >
             <img
               src={heroImage}
               alt="Seren luxury flower arrangements and candles"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain object-center"
               loading="eager"
             />
           </div>
