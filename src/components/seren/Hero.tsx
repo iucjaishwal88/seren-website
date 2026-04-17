@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen md:h-screen flex items-center overflow-hidden"
       style={{ background: 'linear-gradient(135deg, #FAF8F3 0%, #F0EBE0 45%, #E8E0CC 100%)' }}
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -74,15 +74,12 @@ export default function Hero() {
         <div
           className={`relative transition-all duration-1000 delay-300 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          {/* Hero image — fixed: use object-contain so the full image is always visible and never cropped */}
-          <div
-            className="relative rounded-3xl overflow-hidden shadow-2xl w-full h-[500px] md:h-[90vh] md:min-h-[700px] flex items-center justify-center"
-            style={{ background: '#FAF8F3' }}
-          >
+          {/* Hero image — fills full right side with cover */}
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl w-full h-[500px] md:h-[85vh]">
             <img
               src={heroImage}
               alt="Seren luxury flower arrangements and candles"
-              className="w-full h-full object-contain object-center"
+              className="w-full h-full object-cover object-center"
               loading="eager"
             />
           </div>
