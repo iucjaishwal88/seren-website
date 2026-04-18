@@ -7,21 +7,17 @@ export default function About() {
     <section id="about" className="py-24 md:py-36" style={{ background: '#FAF8F3' }}>
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-center" ref={ref}>
-          <div className={`relative section-fade ${isInView ? 'visible' : ''}`}>
-            <div className="relative rounded-3xl overflow-hidden aspect-[3/4] shadow-xl">
+          {/* Image Column - Full height, cream background, object-contain */}
+          <div className={`relative section-fade h-full flex items-center ${isInView ? 'visible' : ''}`}>
+            <div 
+              className="relative rounded-3xl overflow-hidden shadow-xl w-full bg-[#FAF8F3] flex items-center justify-center"
+              style={{ minHeight: '500px', height: '100%' }}
+            >
               <img
-                src="https://images.pexels.com/photos/4397916/pexels-photo-4397916.jpeg?auto=compress&cs=tinysrgb&w=700&h=900&dpr=1"
-                alt="Seren handcrafted candle"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2A2820]/10 to-transparent" />
-            </div>
-            <div className="absolute -bottom-6 -right-6 w-40 h-40 rounded-2xl overflow-hidden shadow-lg border-4 border-[#FAF8F3]">
-              <img
-                src="https://images.pexels.com/photos/6707628/pexels-photo-6707628.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=1"
-                alt="Candle detail"
-                className="w-full h-full object-cover"
+                src="https://i.ibb.co/Fk988sbw/Chat-GPT-Image-Apr-18-2026-06-51-16-PM.png"
+                alt="Seren handcrafted candles collection"
+                className="w-full h-full object-contain"
+                style={{ maxHeight: '100%' }}
                 loading="lazy"
               />
             </div>
