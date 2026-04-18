@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import serenLogo from '../../assets/seren-logo.png';
 
 const links = [
   { label: 'Home', href: '#home' },
@@ -29,9 +28,9 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
         <a href="#home" className="flex items-center group">
           <img
-            src={serenLogo}
+            src="https://i.ibb.co/27cQs4Pq/seren-2.png"
             alt="Seren"
-            className="h-10 md:h-[45px] w-auto transition-transform duration-300 group-hover:scale-105 mr-2"
+            className="h-8 md:h-10 w-auto transition-transform duration-300 group-hover:scale-105"
           />
         </a>
 
