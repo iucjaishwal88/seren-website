@@ -45,8 +45,17 @@ export default function Footer() {
           <p className="font-sans text-xs text-warm-white/25">
             © 2025 Seren. All rights reserved.
           </p>
-          <p className="font-sans text-xs text-warm-white/25">
-            Handmade with love in India
+          <p className="font-sans text-xs text-warm-white/40">
+            Designed & Built by{' '}
+            <a
+              href="https://www.instagram.com/buildwith_ayushi_/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sage hover:text-warm-white transition-colors underline-offset-4 hover:underline"
+            >
+              Ayushi
+            </a>{' '}
+            ✨
           </p>
         </div>
       </div>
