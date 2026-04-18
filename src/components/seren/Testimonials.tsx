@@ -3,21 +3,33 @@ import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "The candles smell absolutely divine. Ordered for my birthday and gifted a few to friends — everyone is obsessed.",
-    name: 'Ananya R.',
-    location: 'Bangalore',
+    quote: "Bahut sundar laga, note bhi bahut pyaara tha, aur complimentary flower bhi! Keep working hard — bahut aage jayega yeh business!",
+    name: 'Nandini',
+    location: 'India',
     stars: 5,
   },
   {
-    quote: "Ordered a custom hamper for my best friend's anniversary. It felt so personal and thoughtful. She cried happy tears!",
-    name: 'Meera S.',
-    location: 'Mumbai',
+    quote: "Overall love the candle and packaging. Also loved the note. Thanks for the sunflower — such a sweet touch!",
+    name: 'Pallavi',
+    location: 'India',
     stars: 5,
   },
   {
-    quote: "Seren is not just a candle, it's a whole vibe. My study desk feels so much calmer. Will definitely reorder.",
-    name: 'Riya K.',
-    location: 'Delhi',
+    quote: "The candle smells too good! Love the candle, the lavender fragrance and the packaging too!",
+    name: 'Aditya',
+    location: 'India',
+    stars: 5,
+  },
+  {
+    quote: "Bahut zayda pasand aaya — itna sundar candle hum kahi dekhe hi nahi!",
+    name: 'Happy Customer',
+    location: 'India',
+    stars: 5,
+  },
+  {
+    quote: "This candle is made with so much detail and love. Truly appreciate the craftsmanship.",
+    name: 'Spidey',
+    location: 'India',
     stars: 5,
   },
 ];
@@ -37,7 +49,7 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {testimonials.map((t, i) => (
             <TestimonialCard key={t.name} testimonial={t} delay={i} />
           ))}
@@ -53,7 +65,7 @@ function TestimonialCard({ testimonial, delay }: { testimonial: typeof testimoni
   return (
     <div
       ref={ref}
-      className={`section-fade section-fade-delay-${delay + 1} ${isInView ? 'visible' : ''}`}
+      className={`section-fade section-fade-delay-${Math.min(delay + 1, 3)} ${isInView ? 'visible' : ''}`}
     >
       <div className="h-full p-7 md:p-8 rounded-3xl bg-white border border-[#E0D8C8] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col">
         <Quote size={24} className="text-sage/40 mb-5 flex-shrink-0" strokeWidth={1} />
