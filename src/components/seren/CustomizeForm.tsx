@@ -67,7 +67,7 @@ export default function CustomizeForm() {
                 'We reply within 1–2 hours',
                 '100% personalized from scratch',
                 'Free customization consultation',
-                'Delivery across India',
+                'Delivering in Muzaffarpur, Bihar',
               ].map((point) => (
                 <div key={point} className="flex items-center gap-3">
                   <CheckCircle size={16} className="text-sage flex-shrink-0" />
