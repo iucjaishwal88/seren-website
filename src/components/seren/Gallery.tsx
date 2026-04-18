@@ -3,33 +3,33 @@ import { Instagram } from 'lucide-react';
 
 const images = [
   {
-    src: 'https://images.pexels.com/photos/3059609/pexels-photo-3059609.jpeg?auto=compress&cs=tinysrgb&w=500&h=700&dpr=1',
-    alt: 'Cozy candle moment',
+    src: 'https://i.ibb.co/KcjmNSjW/Whats-App-Image-2026-04-17-at-7-14-16-PM.jpg',
+    alt: 'Seren candle product photo',
     tall: true,
   },
   {
-    src: 'https://images.pexels.com/photos/1123262/pexels-photo-1123262.jpeg?auto=compress&cs=tinysrgb&w=500&h=400&dpr=1',
-    alt: 'Candle glow evening',
+    src: 'https://i.ibb.co/pBWMP6Vr/Whats-App-Image-2026-04-17-at-7-14-22-PM-1.jpg',
+    alt: 'Seren candle product photo',
     tall: false,
   },
   {
-    src: 'https://images.pexels.com/photos/6707628/pexels-photo-6707628.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1',
-    alt: 'Scented candle lifestyle',
+    src: 'https://i.ibb.co/xZgTMbN/Whats-App-Image-2026-04-17-at-7-14-17-PM.jpg',
+    alt: 'Seren candle product photo',
     tall: false,
   },
   {
-    src: 'https://images.pexels.com/photos/4397916/pexels-photo-4397916.jpeg?auto=compress&cs=tinysrgb&w=500&h=700&dpr=1',
-    alt: 'Aesthetic candle setup',
+    src: 'https://i.ibb.co/kVVBdrzb/product1-jpeg.jpg',
+    alt: 'Seren candle product photo',
     tall: true,
   },
   {
-    src: 'https://images.pexels.com/photos/5632401/pexels-photo-5632401.jpeg?auto=compress&cs=tinysrgb&w=500&h=400&dpr=1',
-    alt: 'Gift hamper aesthetic',
+    src: 'https://i.ibb.co/VcBtmHQq/Whats-App-Image-2026-04-17-at-7-14-21-PM.jpg',
+    alt: 'Seren candle product photo',
     tall: false,
   },
   {
-    src: 'https://images.pexels.com/photos/4099354/pexels-photo-4099354.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1',
-    alt: 'Custom candle packaging',
+    src: 'https://i.ibb.co/21tfwrZy/Whats-App-Image-2026-04-17-at-7-14-19-PM-1.jpg',
+    alt: 'Seren candle product photo',
     tall: false,
   },
 ];
@@ -42,10 +42,15 @@ export default function Gallery() {
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-14" ref={ref}>
           <div className={`section-fade ${isInView ? 'visible' : ''}`}>
-            <div className="inline-flex items-center gap-2 mb-4">
+            <a
+              href="https://www.instagram.com/_seren.official"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mb-4 hover:opacity-70 transition-opacity"
+            >
               <Instagram size={16} className="text-sage" />
-              <span className="font-sans text-xs tracking-[0.25em] uppercase text-sage">@seren</span>
-            </div>
+              <span className="font-sans text-xs tracking-[0.25em] uppercase text-sage">@_seren.official</span>
+            </a>
             <h2 className="font-serif text-4xl md:text-5xl text-warm-white mb-4">
               Seen in your cozy moments
             </h2>
