@@ -1,7 +1,6 @@
 import { useInView } from '../../hooks/useInView';
 import { MessageCircle } from 'lucide-react';
-
-const WHATSAPP_NUMBER = '918651205701';
+import { useOrderDialog } from './OrderDialog';
 
 const products = [
   {
