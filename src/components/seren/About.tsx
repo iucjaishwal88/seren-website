@@ -44,7 +44,7 @@ export default function About() {
 
             <div className="flex gap-10">
               <div>
-                <p className="font-serif text-3xl text-warm-mid font-semibold">500+</p>
+                <p className="font-serif text-3xl text-warm-mid font-semibold">50+</p>
                 <p className="font-sans text-xs text-warm-mid/50 mt-1 tracking-wide">Happy Customers</p>
               </div>
               <div className="w-px bg-[#E0D8C8]" />
@@ -54,8 +54,8 @@ export default function About() {
               </div>
               <div className="w-px bg-[#E0D8C8]" />
               <div>
-                <p className="font-serif text-3xl text-warm-mid font-semibold">∞</p>
-                <p className="font-sans text-xs text-warm-mid/50 mt-1 tracking-wide">Custom Options</p>
+                <p className="font-serif text-3xl text-warm-mid font-semibold">📍</p>
+                <p className="font-sans text-xs text-warm-mid/50 mt-1 tracking-wide">Delivering in Muzaffarpur, Bihar</p>
               </div>
             </div>
           </div>
