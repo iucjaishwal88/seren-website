@@ -1,7 +1,7 @@
 import { useInView } from '../../hooks/useInView';
 import { MessageCircle } from 'lucide-react';
 
-const WHATSAPP_NUMBER = '919999999999'; // update to real number
+const WHATSAPP_NUMBER = '918651205701';
 
 const products = [
   {

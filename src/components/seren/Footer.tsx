@@ -21,10 +21,11 @@ export default function Footer() {
 
           <div className="flex items-center gap-4">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/_seren.official"
               target="_blank"
               rel="noopener noreferrer"
               className="w-11 h-11 rounded-full border border-warm-white/10 flex items-center justify-center text-warm-white/50 hover:text-sage hover:border-sage/40 transition-all duration-300"
+              aria-label="Instagram @_seren.official"
             >
               <Instagram size={18} />
             </a>
