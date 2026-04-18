@@ -77,9 +77,7 @@ export default function Products() {
 
 function ProductCard({ product, delay }: { product: typeof products[0]; delay: number }) {
   const { ref, isInView } = useInView(0.1);
-  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hi Seren! I'd like to order: ${product.name} (₹${product.price}).`
-  )}`;
+  const { openOrder } = useOrderDialog();
 
   return (
     <div
@@ -102,15 +100,14 @@ function ProductCard({ product, delay }: { product: typeof products[0]; delay: n
           <span className="font-serif text-lg text-sage font-medium mb-3">₹{product.price}</span>
           <p className="font-sans text-sm text-warm-mid/60 leading-relaxed mb-6 flex-1">{product.description}</p>
 
-          <a
-            href={waHref}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => openOrder(`${product.name} (₹${product.price})`)}
             className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-full font-sans text-sm font-medium tracking-wide bg-[#25D366] text-white hover:bg-[#20ba59] hover:shadow-md transition-all duration-300"
           >
             <MessageCircle size={16} />
             Order on WhatsApp
-          </a>
+          </button>
         </div>
       </div>
     </div>
