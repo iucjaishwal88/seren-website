@@ -10,7 +10,6 @@ import TrustSection from '@/components/seren/TrustSection';
 import Testimonials from '@/components/seren/Testimonials';
 import Footer from '@/components/seren/Footer';
 import MobileCta from '@/components/seren/MobileCta';
-import ChatButton from '@/components/seren/ChatButton';
 
 const Index = () => {
   return (
@@ -29,7 +28,6 @@ const Index = () => {
       </main>
       <Footer />
       <MobileCta />
-      <ChatButton />
     </div>
   );
 };
