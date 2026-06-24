@@ -26,23 +26,49 @@ export default function CustomizeForm() {
   const { ref, isInView } = useInView(0.1);
   const [form, setForm] = useState({
     name: '',
+    email: '',
     product: '',
     details: '',
     occasion: '',
     phone: '',
   });
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleWhatsApp = (e: React.FormEvent) => {
+  const handleWhatsApp = async (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = encodeURIComponent(
-      `Hi Seren! 🕯️\n\nName: ${form.name}\nProduct: ${form.product}\nOccasion: ${form.occasion}\nDetails: ${form.details}\nContact: ${form.phone}\n\nLooking forward to my custom order!`
-    );
-    window.open(`https://wa.me/918651205701?text=${msg}`, '_blank');
+    if (submitting) return;
+    setSubmitting(true);
+
+    try {
+      const { error } = await ordersClient.from('orders').insert({
+        customer_name: form.name.trim().slice(0, 100),
+        customer_email: form.email.trim().slice(0, 255) || null,
+        customer_phone: form.phone.trim().slice(0, 20),
+        product_type: form.product,
+        customization: form.details.trim().slice(0, 1000) || null,
+        occasion: form.occasion || null,
+        status: 'pending',
+      });
+      if (error) throw error;
+
+      toast.success("Order saved! Opening WhatsApp...");
+
+      const msg = encodeURIComponent(
+        `Hi Seren! 🕯️\n\nName: ${form.name}\nProduct: ${form.product}\nOccasion: ${form.occasion}\nDetails: ${form.details}\nContact: ${form.phone}\n\nLooking forward to my custom order!`
+      );
+      window.open(`https://wa.me/918651205701?text=${msg}`, '_blank');
+    } catch (err: any) {
+      console.error('Order save failed:', err);
+      toast.error(err?.message || 'Could not save order. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
+
 
   const isValid = form.name && form.product && form.phone;
 
