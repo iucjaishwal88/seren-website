@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useInView } from '../../hooks/useInView';
 import { MessageCircle, CheckCircle } from 'lucide-react';
+import { toast } from 'sonner';
+import { ordersClient } from '../../lib/ordersClient';
+
 
 const productOptions = [
   'Scented Candle',
@@ -23,23 +26,49 @@ export default function CustomizeForm() {
   const { ref, isInView } = useInView(0.1);
   const [form, setForm] = useState({
     name: '',
+    email: '',
     product: '',
     details: '',
     occasion: '',
     phone: '',
   });
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleWhatsApp = (e: React.FormEvent) => {
+  const handleWhatsApp = async (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = encodeURIComponent(
-      `Hi Seren! 🕯️\n\nName: ${form.name}\nProduct: ${form.product}\nOccasion: ${form.occasion}\nDetails: ${form.details}\nContact: ${form.phone}\n\nLooking forward to my custom order!`
-    );
-    window.open(`https://wa.me/918651205701?text=${msg}`, '_blank');
+    if (submitting) return;
+    setSubmitting(true);
+
+    try {
+      const { error } = await ordersClient.from('orders').insert({
+        customer_name: form.name.trim().slice(0, 100),
+        customer_email: form.email.trim().slice(0, 255) || null,
+        customer_phone: form.phone.trim().slice(0, 20),
+        product_type: form.product,
+        customization: form.details.trim().slice(0, 1000) || null,
+        occasion: form.occasion || null,
+        status: 'pending',
+      });
+      if (error) throw error;
+
+      toast.success("Order saved! Opening WhatsApp...");
+
+      const msg = encodeURIComponent(
+        `Hi Seren! 🕯️\n\nName: ${form.name}\nProduct: ${form.product}\nOccasion: ${form.occasion}\nDetails: ${form.details}\nContact: ${form.phone}\n\nLooking forward to my custom order!`
+      );
+      window.open(`https://wa.me/918651205701?text=${msg}`, '_blank');
+    } catch (err: any) {
+      console.error('Order save failed:', err);
+      toast.error(err?.message || 'Could not save order. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
+
 
   const isValid = form.name && form.product && form.phone;
 
@@ -102,6 +131,21 @@ export default function CustomizeForm() {
                 </div>
 
                 <div>
+                  <label className="block font-sans text-xs text-warm-mid/60 uppercase tracking-wider mb-2">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="you@example.com"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E0D8C8] bg-[#FAF8F3] font-sans text-sm text-warm-mid placeholder:text-warm-mid/30 focus:outline-none focus:ring-2 focus:ring-sage/30 focus:border-sage transition-all"
+                  />
+                </div>
+
+
+
+
+                <div>
                   <label className="block font-sans text-xs text-warm-mid/60 uppercase tracking-wider mb-2">Product Type *</label>
                   <select
                     name="product"
@@ -155,12 +199,13 @@ export default function CustomizeForm() {
 
                 <button
                   type="submit"
-                  disabled={!isValid}
-                  className={`w-full btn-whatsapp transition-all duration-300 ${!isValid ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  disabled={!isValid || submitting}
+                  className={`w-full btn-whatsapp transition-all duration-300 ${(!isValid || submitting) ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   <MessageCircle size={16} />
-                  Send Order on WhatsApp
+                  {submitting ? 'Saving order...' : 'Send Order on WhatsApp'}
                 </button>
+
 
                 <div className="flex justify-center gap-6 pt-1">
                   <span className="font-sans text-xs text-warm-mid/40">We reply within 1–2 hours</span>
