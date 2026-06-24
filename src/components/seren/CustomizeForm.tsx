@@ -199,12 +199,13 @@ export default function CustomizeForm() {
 
                 <button
                   type="submit"
-                  disabled={!isValid}
-                  className={`w-full btn-whatsapp transition-all duration-300 ${!isValid ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  disabled={!isValid || submitting}
+                  className={`w-full btn-whatsapp transition-all duration-300 ${(!isValid || submitting) ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   <MessageCircle size={16} />
-                  Send Order on WhatsApp
+                  {submitting ? 'Saving order...' : 'Send Order on WhatsApp'}
                 </button>
+
 
                 <div className="flex justify-center gap-6 pt-1">
                   <span className="font-sans text-xs text-warm-mid/40">We reply within 1–2 hours</span>
