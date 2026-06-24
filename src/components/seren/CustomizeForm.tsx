@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useInView } from '../../hooks/useInView';
 import { MessageCircle, CheckCircle } from 'lucide-react';
+import { toast } from 'sonner';
+import { ordersClient } from '../../lib/ordersClient';
+
 
 const productOptions = [
   'Scented Candle',
