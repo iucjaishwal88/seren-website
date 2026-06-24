@@ -131,6 +131,18 @@ export default function CustomizeForm() {
                 </div>
 
                 <div>
+                  <label className="block font-sans text-xs text-warm-mid/60 uppercase tracking-wider mb-2">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="you@example.com"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E0D8C8] bg-[#FAF8F3] font-sans text-sm text-warm-mid placeholder:text-warm-mid/30 focus:outline-none focus:ring-2 focus:ring-sage/30 focus:border-sage transition-all"
+                  />
+
+
+                <div>
                   <label className="block font-sans text-xs text-warm-mid/60 uppercase tracking-wider mb-2">Product Type *</label>
                   <select
                     name="product"
