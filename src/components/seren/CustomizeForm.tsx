@@ -140,6 +140,9 @@ export default function CustomizeForm() {
                     placeholder="you@example.com"
                     className="w-full px-4 py-3 rounded-xl border border-[#E0D8C8] bg-[#FAF8F3] font-sans text-sm text-warm-mid placeholder:text-warm-mid/30 focus:outline-none focus:ring-2 focus:ring-sage/30 focus:border-sage transition-all"
                   />
+                </div>
+
+
 
 
                 <div>
