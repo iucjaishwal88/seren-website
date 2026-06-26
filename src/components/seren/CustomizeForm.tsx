@@ -63,7 +63,7 @@ export default function CustomizeForm() {
       window.open(`https://wa.me/919204334523?text=${msg}`, '_blank');
     } catch (err: any) {
       console.error('Order save failed:', err);
-      toast.error(err?.message || 'Could not save order. Please try again.');
+      toast.error('Could not save your order. Please try again later.');
     } finally {
       setSubmitting(false);
     }
