@@ -24,6 +24,31 @@ const occasionOptions = [
   'Other',
 ];
 
+const orderSchema = z.object({
+  name: z.string().trim().min(1, 'Name is required').max(100, 'Name is too long'),
+  email: z
+    .string()
+    .trim()
+    .max(255, 'Email is too long')
+    .email('Please enter a valid email')
+    .optional()
+    .or(z.literal('')),
+  phone: z
+    .string()
+    .trim()
+    .min(7, 'Please enter a valid phone number')
+    .max(20, 'Phone number is too long')
+    .regex(/^[+\d\s()-]+$/, 'Phone can only contain digits, spaces, +, -, ()'),
+  product: z.enum(productOptions as [string, ...string[]], {
+    errorMap: () => ({ message: 'Please select a valid product type' }),
+  }),
+  occasion: z
+    .enum(occasionOptions as [string, ...string[]])
+    .optional()
+    .or(z.literal('')),
+  details: z.string().trim().max(1000, 'Details are too long').optional().or(z.literal('')),
+});
+
 export default function CustomizeForm() {
   const { ref, isInView } = useInView(0.1);
   const [form, setForm] = useState({
