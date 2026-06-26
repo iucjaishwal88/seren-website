@@ -60,7 +60,7 @@ export default function CustomizeForm() {
       const msg = encodeURIComponent(
         `Hi Seren! 🕯️\n\nName: ${form.name}\nProduct: ${form.product}\nOccasion: ${form.occasion}\nDetails: ${form.details}\nContact: ${form.phone}\n\nLooking forward to my custom order!`
       );
-      window.open(`https://wa.me/918651205701?text=${msg}`, '_blank');
+      window.open(`https://wa.me/919204334523?text=${msg}`, '_blank');
     } catch (err: any) {
       console.error('Order save failed:', err);
       toast.error(err?.message || 'Could not save order. Please try again.');

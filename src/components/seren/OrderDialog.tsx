@@ -2,7 +2,7 @@ import { createContext, useContext, useState, ReactNode, FormEvent } from 'react
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { MessageCircle } from 'lucide-react';
 
-const WHATSAPP_NUMBER = '918651205701';
+const WHATSAPP_NUMBER = '919204334523';
 
 type OrderContextType = {
   openOrder: (productLabel?: string) => void;
