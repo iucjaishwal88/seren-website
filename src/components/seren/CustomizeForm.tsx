@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { z } from 'zod';
 import { useInView } from '../../hooks/useInView';
 import { MessageCircle, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { ordersClient } from '../../lib/ordersClient';
+
 
 
 const productOptions = [
@@ -21,6 +23,31 @@ const occasionOptions = [
   'Just Because',
   'Other',
 ];
+
+const orderSchema = z.object({
+  name: z.string().trim().min(1, 'Name is required').max(100, 'Name is too long'),
+  email: z
+    .string()
+    .trim()
+    .max(255, 'Email is too long')
+    .email('Please enter a valid email')
+    .optional()
+    .or(z.literal('')),
+  phone: z
+    .string()
+    .trim()
+    .min(7, 'Please enter a valid phone number')
+    .max(20, 'Phone number is too long')
+    .regex(/^[+\d\s()-]+$/, 'Phone can only contain digits, spaces, +, -, ()'),
+  product: z.enum(productOptions as [string, ...string[]], {
+    errorMap: () => ({ message: 'Please select a valid product type' }),
+  }),
+  occasion: z
+    .enum(occasionOptions as [string, ...string[]])
+    .optional()
+    .or(z.literal('')),
+  details: z.string().trim().max(1000, 'Details are too long').optional().or(z.literal('')),
+});
 
 export default function CustomizeForm() {
   const { ref, isInView } = useInView(0.1);
@@ -44,13 +71,22 @@ export default function CustomizeForm() {
     setSubmitting(true);
 
     try {
+      const parsed = orderSchema.safeParse(form);
+      if (!parsed.success) {
+        const firstIssue = parsed.error.issues[0];
+        toast.error(firstIssue?.message || 'Please check your inputs.');
+        setSubmitting(false);
+        return;
+      }
+      const data = parsed.data;
+
       const { error } = await ordersClient.from('orders').insert({
-        customer_name: form.name.trim().slice(0, 100),
-        customer_email: form.email.trim().slice(0, 255) || null,
-        customer_phone: form.phone.trim().slice(0, 20),
-        product_type: form.product,
-        customization: form.details.trim().slice(0, 1000) || null,
-        occasion: form.occasion || null,
+        customer_name: data.name,
+        customer_email: data.email || null,
+        customer_phone: data.phone,
+        product_type: data.product,
+        customization: data.details || null,
+        occasion: data.occasion || null,
         status: 'pending',
       });
       if (error) throw error;
@@ -58,9 +94,9 @@ export default function CustomizeForm() {
       toast.success("Order saved! Opening WhatsApp...");
 
       const msg = encodeURIComponent(
-        `Hi Seren! 🕯️\n\nName: ${form.name}\nProduct: ${form.product}\nOccasion: ${form.occasion}\nDetails: ${form.details}\nContact: ${form.phone}\n\nLooking forward to my custom order!`
+        `Hi Seren! 🕯️\n\nName: ${data.name}\nProduct: ${data.product}\nOccasion: ${data.occasion || '-'}\nDetails: ${data.details || '-'}\nContact: ${data.phone}\n\nLooking forward to my custom order!`
       );
-      window.open(`https://wa.me/919204334523?text=${msg}`, '_blank');
+      window.open(`https://wa.me/919204334523?text=${msg}`, '_blank', 'noopener,noreferrer');
     } catch (err: any) {
       console.error('Order save failed:', err);
       toast.error('Could not save your order. Please try again later.');
